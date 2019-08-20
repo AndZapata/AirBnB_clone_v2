@@ -7,7 +7,7 @@ from fabric.api import local, put, run, env
 from datetime import datetime
 from os.path import exists
 
-hosts = ['35.227.76.167', '35.237.211.62']
+env.hosts = ['35.227.76.167', '35.237.211.62']
 
 
 def do_pack():
@@ -30,9 +30,9 @@ def do_deploy(archive_path):
             name = archive_path.split('/')[-1]
             extention = name.split('.')[0]
             releases = '/data/web_static/releases/'
-            current = '/data/web_static/current/'
+            current = '/data/web_static/current'
             run('mkdir -p {}{}/'.format(releases, extention))
-            run('tar -zxf /tmp/{} -C {}{}/'.format(name, releases, extention))
+            run('tar -xzf /tmp/{} -C {}{}/'.format(name, releases, extention))
             run('rm /tmp/{}'.format(name))
             run('mv {1}{0}/web_static/* {1}{0}/'.format(
                 extention, releases))
