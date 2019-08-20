@@ -13,7 +13,7 @@ def do_pack():
     local('mkdir -p versions')
     ans = 'versions/web_static_{}.tgz'.format(val)
     try:
-        local('tar -czvf {} webstatic'.format(ans))
+        local('tar -czvf {} web_static'.format(ans))
         return ans
     except:
         return None
