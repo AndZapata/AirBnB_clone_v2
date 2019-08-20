@@ -38,7 +38,7 @@ def do_deploy(archive_path):
         run('mv {1}{0}/web_static/* {1}{0}/'.format(extention, releases))
         run('rm -rf {}{}/web_static'.format(releases, extention))
         run('rm -rf {}'.format(current))
-        run('ln -fs {}{}/ {}'.format(releases, extention, current))
+        run('ln -s {}{}/ {}'.format(releases, extention, current))
         return True
     except:
         return False
