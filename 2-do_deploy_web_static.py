@@ -24,23 +24,21 @@ def do_pack():
 
 def do_deploy(archive_path):
     ''' Fabric script that distributes an archive to web servers '''
-    if exists(archive_path):
-        try:
-            put(archive_path, '/tmp/')
-            name = archive_path.split('/')[-1]
-            extention = name.split('.')[0]
-            releases = '/data/web_static/releases/'
-            current = '/data/web_static/current'
-            run('mkdir -p {}{}/'.format(releases, extention))
-            run('tar -xzf /tmp/{} -C {}{}/'.format(name, releases, extention))
-            run('rm /tmp/{}'.format(name))
-            run('mv {1}{0}/web_static/* {1}{0}/'.format(
-                extention, releases))
-            run('rm -rf {}{}/web_static'.format(releases, extention))
-            run('rm -rf {}'.format(current))
-            run('ln -fs {}{}/ {}'.format(releases, extention, current))
-            return True
-        except:
-            return False
-    else:
+    if not exists(archive_path):
+        return False
+    try:
+        put(archive_path, '/tmp/')
+        name = archive_path.split('/')[-1]
+        extention = name.split('.')[0]
+        releases = '/data/web_static/releases/'
+        current = '/data/web_static/current'
+        run('mkdir -p {}{}/'.format(releases, extention))
+        run('tar -xzf /tmp/{} -C {}{}/'.format(name, releases, extention))
+        run('rm /tmp/{}'.format(name))
+        run('mv {1}{0}/web_static/* {1}{0}/'.format(extention, releases))
+        run('rm -rf {}{}/web_static'.format(releases, extention))
+        run('rm -rf {}'.format(current))
+        run('ln -fs {}{}/ {}'.format(releases, extention, current))
+        return True
+    except:
         return False
