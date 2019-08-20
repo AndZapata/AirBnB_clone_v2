@@ -43,6 +43,7 @@ def do_deploy(archive_path):
     except:
         return False
 
+
 def deploy():
     '''
     Fabric script that creates and distributes an archive to web servers
