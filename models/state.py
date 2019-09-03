@@ -23,6 +23,7 @@ class State(BaseModel, Base):
 
         @property
         def cities(self):
+            ''' nice comment '''
             list_1 = []
             objetos = models.storage.all(models.City)
             for key, val in objetos.items():
