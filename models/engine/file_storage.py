@@ -69,3 +69,7 @@ class FileStorage:
             if obj == value:
                 del self.__objects[key]
                 break
+
+    def close(self):
+        ''' Close session and reload '''
+        self.reload()

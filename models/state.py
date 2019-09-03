@@ -19,6 +19,8 @@ class State(BaseModel, Base):
         cities = relationship('City', backref='state',
                               cascade='delete')
     else:
+        name = ''
+
         @property
         def cities(self):
             list_1 = []
