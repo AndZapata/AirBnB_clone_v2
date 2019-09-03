@@ -24,8 +24,8 @@ class State(BaseModel, Base):
         @property
         def cities(self):
             list_1 = []
-            objetos = storage.all(City)
-            for k, v in objetos.items():
-                if v.state_id == self.id:
-                    list_1.append(v)
+            objetos = models.storage.all(models.City)
+            for key, val in objetos.items():
+                if val.state_id == self.id:
+                    list_1.append(val)
             return list_1
