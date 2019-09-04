@@ -55,7 +55,13 @@ class DBStorage:
         class_ls = []
         key_val = {}
         if cls:
-            class_ls = self.__session.query(cls).all()
+            try:
+                if type(cls) == str:
+                    class_ls = self.__session.query(eval(cls)).all()
+                else:
+                    class_ls = self.__session.query(cls).all()
+            except:
+                pass
         else:
             class_ls += self.__session.query(User).all()
             class_ls += self.__session.query(State).all()
