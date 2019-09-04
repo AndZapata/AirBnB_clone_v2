@@ -11,12 +11,14 @@ def states_hbnb(id=None):
     ''' display “states HBNB!” '''
     dict_state = storage.all("State")
     list_state = list(dict_state.values())
+    test_id = None
     if id is not None:
         key = 'State.{}'.format(id)
         if key in dict_state:
+            test_id = 1
             list_state = [dict_state[key]]
     return render_template('9-states.html',
-                           list_state=list_state, id=id)
+                           list_state=list_state, test_id=test_id, id=id)
 
 
 @app.teardown_appcontext

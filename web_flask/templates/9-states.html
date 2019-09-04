@@ -11,7 +11,7 @@
       <LI>{{i.id}}: <B>{{i.name}}</B></LI>
       {% endfor %}
     </UL>
-    {% elif id %}
+    {% elif test_id == 1 %}
     {% for i in list_state|sort(attribute='name') %}
     <H1>State: {{i.name}}</H1>
     <H3>Cities:</H3>
