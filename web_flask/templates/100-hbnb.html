@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/4-com\
+mon.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/3-hea\
+der.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/3-foo\
+ter.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/6-fil\
+ters.css') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='image\
+s/icon.png') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/8-places.css') }}">
+    <title>HBnB</title>
+  </head>
+<body>
+    <header></header>
+    <div class="container">
+      <section class="filters">
+        <div class="locations">
+          <h3>States</h3>
+          <h4>&nbsp;</h4>
+          <ul class="popover">
+            <li>
+	      {%for i in list_state|sort(attribute='name')%}
+              <h2>{{i.name}}</h2>
+              <ul>
+		{%for j in i.cities|sort(attribute='name')%}
+                <li>{{j.name}}</li>
+                {% endfor %}
+              </ul>
+            </li>
+	    {% endfor %}
+          </ul>
+        </div>
+        <div class="amenities">
+          <h3>Amenities</h3>
+          <h4>&nbsp;</h4>
+          <ul class="popover">
+	    {%for i in list_amenity|sort(attribute='name')%}
+            <li>{{ i.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <button>
+          Search
+        </button>
+      </section>
+      <section class="places">
+        <h1>Places</h1>
+        <div class="boxes">
+	  {%for i in list_place|sort(attribute='name')%}
+          <article>
+	    <br>
+            <h2>{{i.name}}</h2>
+	    <br>
+            <div class="price_by_night">
+              {{i.price_by_night}}
+            </div>
+            <div class="information">
+              <div class="max_guest">
+                <div class="img1"></div>
+                <p>{{i.max_guest}} Guest</p>
+              </div>
+              <div class="number_rooms">
+                <div class="img2"></div>
+                <p>{{i.number_rooms}} Room</p>
+              </div>
+              <div class="number_bathrooms">
+                <div class="img3"></div>
+                <p>{{i.number_bathrooms}} Bathroom</p>
+              </div>
+            </div>
+            <div class="user"><strong>Owner:</strong> Juanito</div>
+            <div class="description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae reprehenderit reiciendis consequatur, accusamus quia accusantium sequi tempore velit expedita impedit minima ea nemo perferendis et, repellat cumque nulla quo optio.
+            </div>
+          </article>
+	  {% endfor %}
+        </div>
+      </section>
+    </div>
+    <footer>
+      Holberton School
+    </footer>
+  </body>
+</html>

@@ -6,6 +6,7 @@ from os import getenv
 from sqlalchemy import Table
 from sqlalchemy.orm import relationship
 from models.review import Review
+import models
 
 """
 Add an instance of SQLAlchemy Table called place_amenity for creating
@@ -80,7 +81,7 @@ class Place(BaseModel, Base):
         @property
         def reviews(self):
             review_ls = []
-            objects = storage.all(Review)
+            objects = models.storage.all(Review)
             for k, v in objects.items():
                 if v.place_id == self.id:
                     review_ls.append(v)
@@ -94,7 +95,7 @@ class Place(BaseModel, Base):
         @property
         def amenities(self):
             amenities_ls = []
-            objects = storage.all(Amenity)
+            objects = models.storage.all(Amenity)
             for k, v in objects.items():
                 if v.amenity_id == self.id:
                     amenities_ls.append(v)
