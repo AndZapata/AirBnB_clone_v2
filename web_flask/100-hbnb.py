@@ -11,9 +11,10 @@ def states_hbnb():
     list_state = list(storage.all("State").values())
     list_amenity = list(storage.all("Amenity").values())
     list_place = list(storage.all("Place").values())
+    list_user = list(storage.all("User").values())
     return render_template('100-hbnb.html',
                            list_state=list_state, list_amenity=list_amenity,
-                           list_place=list_place)
+                           list_place=list_place, list_user=list_user)
 
 
 @app.teardown_appcontext

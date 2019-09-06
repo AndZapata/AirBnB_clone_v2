@@ -72,9 +72,13 @@ s/icon.png') }}" />
                 <p>{{i.number_bathrooms}} Bathroom</p>
               </div>
             </div>
-            <div class="user"><strong>Owner:</strong> Juanito</div>
+	    {%for user in list_user|sort(attribute='first_name')%}
+	    {% if user.id == i.user_id %}
+            <div class="user"><strong>Owner:</strong> {{user.first_name}} {{user.last_name}} </div>
+	    {% endif %}
+	    {% endfor %}
             <div class="description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae reprehenderit reiciendis consequatur, accusamus quia accusantium sequi tempore velit expedita impedit minima ea nemo perferendis et, repellat cumque nulla quo optio.
+	      <p>{{i.description|safe}}</p>
             </div>
           </article>
 	  {% endfor %}
